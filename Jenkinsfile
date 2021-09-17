@@ -16,13 +16,11 @@ node('master') {
 			sh 'uname -a'
 
 		}
+	}
 
-
+	finally {
 		stage('Cleanup') {
 			deleteDir()
-		}
-
-
-
+		}	
 	}
 }

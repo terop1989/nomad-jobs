@@ -13,8 +13,10 @@ node('master') {
 		def AnsibleAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
 		AnsibleAgent.inside() {
 
-			sshagent (credentials: ['nomad-ssh-agent']) {			
-				sh '/usr/local/bin/ansible -i ./hosts.txt -m ping all -v'
+			stage('Ansible') {
+				sshagent (credentials: ['nomad-ssh-agent']) {			
+					sh '/usr/local/bin/ansible -i ./hosts.txt -m ping all -v'
+				}
 			}
 		}
 	}

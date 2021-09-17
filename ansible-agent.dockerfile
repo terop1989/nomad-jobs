@@ -24,7 +24,8 @@ RUN pip3 install \
         python-jenkins
 
 RUN mkdir /.ansible \
-    && chmod 777 /.ansible
+    && chmod 777 /.ansible \
+    && cat hosts.lst >> /etc/hosts
 
 
 #

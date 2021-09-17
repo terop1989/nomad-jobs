@@ -2,6 +2,9 @@ FROM ubuntu:focal
 #
 ARG VERSION=2.9.13
 #
+
+ADD hosts.lst /
+
 RUN apt-get update \
         && apt-get install -y --no-install-recommends \
         python3-pip \
@@ -25,7 +28,7 @@ RUN pip3 install \
 
 RUN mkdir /.ansible \
     && chmod 777 /.ansible \
-    && cat hosts.lst >> /etc/hosts
+    && cat /hosts.lst >> /etc/hosts
 
 
 #

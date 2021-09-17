@@ -15,7 +15,7 @@ node('master') {
 
 			stage('Ansible') {
 				sshagent (credentials: ['nomad-ssh-agent']) {			
-					sh '/usr/local/bin/ansible -i ./hosts.txt -m ping all -v'
+					sh "/usr/local/bin/ansible -i ./hosts.txt -m ping all -v"
 				}
 			}
 		}

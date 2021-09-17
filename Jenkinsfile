@@ -14,7 +14,7 @@ node('master') {
 		AnsibleAgent.inside() {
 
 			sshagent (credentials: ['nomad-ssh-agent']) {			
-				sh 'ansible -m ping all'
+				sh 'ansible -i ./hosts.txt -m ping all'
 			}
 		}
 	}

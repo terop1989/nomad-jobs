@@ -23,7 +23,10 @@ RUN pip3 install \
         natsort \
         python-jenkins
 
-RUN mkdir /.ansible
+RUN mkdir /.ansible \
+    && mkdir /.ansible/tmp
+
+
 #
 ##
 ENTRYPOINT []

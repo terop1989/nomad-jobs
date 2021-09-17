@@ -22,6 +22,8 @@ RUN pip3 install \
         jinja2 \
         natsort \
         python-jenkins
+
+RUN mkdir /.ansible
 #
 ##
 ENTRYPOINT []

@@ -24,7 +24,7 @@ RUN pip3 install \
         python-jenkins
 
 RUN mkdir /.ansible \
-    && mkdir /.ansible/tmp
+    && chmod 777 /.ansible
 
 
 #

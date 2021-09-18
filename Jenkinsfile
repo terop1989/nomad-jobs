@@ -9,9 +9,10 @@ node('master') {
 		jenkinsAgentDockerfileName = 'ansible-agent.dockerfile'
 		jenkinsAgentBuildName = 'ansible-agent/ansible:latest'
 		jenkinsAgentBuildArgs = ''
+		jenkinsAgentRunArgs = " -u 0:0 "
 
 		def AnsibleAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
-		AnsibleAgent.inside() {
+		AnsibleAgent.inside("${jenkinsAgentRunArgs}") {
 
 			stage('Ansible') {
 				sshagent (credentials: ['nomad-ssh-agent']) {

@@ -35,3 +35,4 @@ RUN mkdir /.ansible \
 ##
 ENTRYPOINT []
 CMD tail -f /dev/null
+USER root

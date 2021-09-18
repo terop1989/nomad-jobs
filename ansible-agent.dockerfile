@@ -9,22 +9,18 @@ RUN apt-get update \
         openssh-client \
         sshpass \
         git \
-        && rm -rf /var/lib/apt/lists/*
-# For Ansible
-RUN pip3 install \
+        && rm -rf /var/lib/apt/lists/* \
+        &&  pip3 install \
         setuptools \
         wheel \
-        lxml
-RUN pip3 install ansible==${VERSION}
-# For Changelog
-RUN pip3 install \
+        lxml \
+        && pip3 install ansible==${VERSION} \
         GitPython \
         atlassian-python-api \
         jinja2 \
         natsort \
         python-jenkins
 
-#
-##
+
 ENTRYPOINT []
 CMD tail -f /dev/null

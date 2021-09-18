@@ -6,6 +6,7 @@ ARG VERSION=2.9.13
 RUN apt-get update \
         && apt-get install -y --no-install-recommends \
         python3-pip \
+        python-pip \
         openssh-client \
         sshpass \
         git \

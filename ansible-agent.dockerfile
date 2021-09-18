@@ -12,7 +12,7 @@ RUN apt-get update \
         git \
         && rm -rf /var/lib/apt/lists/*
 
-RUN     pip install --upgrade pip
+RUN     pip3 install --upgrade pip
 
 RUN     pip3 install \
         setuptools \

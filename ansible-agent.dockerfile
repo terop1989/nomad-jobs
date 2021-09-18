@@ -19,7 +19,8 @@ RUN apt-get update \
         atlassian-python-api \
         jinja2 \
         natsort \
-        python-jenkins
+        python-jenkins \
+        && ansible-galaxy collection install community.general
 
 
 ENTRYPOINT []

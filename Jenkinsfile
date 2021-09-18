@@ -16,7 +16,7 @@ node('master') {
 
 			stage('Ansible') {
 				sshagent (credentials: ['nomad-ssh-agent']) {
-					sh "/usr/local/bin/ansible-playbook nomad-job.yml -v"
+					sh "/usr/local/bin/ansible-playbook -i ./hosts.txt nomad-job.yml -v"
 				}
 			}
 		}

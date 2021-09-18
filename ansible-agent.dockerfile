@@ -20,6 +20,7 @@ RUN apt-get update \
         jinja2 \
         natsort \
         python-jenkins \
+        python-nomad
         && ansible-galaxy collection install community.general
 
 

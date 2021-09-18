@@ -6,5 +6,8 @@
   tasks:
 
   - name: Ping
-    ping:
+    community.general.nomad_job:
+      host: localhost
+      state: present
+      content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
     

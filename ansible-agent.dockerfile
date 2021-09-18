@@ -16,7 +16,6 @@ RUN     pip3 install --upgrade pip
 
 RUN     pip3 install \
         setuptools \
-        setuptools_rust \
         wheel \
         lxml
         

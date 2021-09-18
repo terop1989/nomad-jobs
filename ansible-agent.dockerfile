@@ -25,7 +25,8 @@ RUN     pip3 install ansible==${VERSION} \
         jinja2 \
         natsort \
         python-jenkins \
-        python-nomad
+
+RUN     pip3 install python-nomad
 
 RUN     ansible-galaxy collection install community.general
 

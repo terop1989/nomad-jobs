@@ -9,19 +9,23 @@ RUN apt-get update \
         openssh-client \
         sshpass \
         git \
-        && rm -rf /var/lib/apt/lists/* \
-        &&  pip3 install \
+        && rm -rf /var/lib/apt/lists/*
+
+RUN     pip3 install \
         setuptools \
+        setuptools_rust \
         wheel \
-        lxml \
-        && pip3 install ansible==${VERSION} \
+        lxml
+        
+RUN     pip3 install ansible==${VERSION} \
         GitPython \
         atlassian-python-api \
         jinja2 \
         natsort \
         python-jenkins \
-        python-nomad \
-        && ansible-galaxy collection install community.general
+        python-nomad
+
+RUN     ansible-galaxy collection install community.general
 
 
 ENTRYPOINT []

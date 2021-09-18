@@ -1,2 +1,2 @@
-[nomad_servers]
+[nomad_server]
 nomad01.local.com      ansible_user=ansible

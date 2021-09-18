@@ -1,0 +1,10 @@
+---
+- name: Starting Nomad Job by Ansible
+  hosts: nomad_server
+  gather_facts: false
+
+  tasks:
+
+  - name: Ping
+    ping:
+    

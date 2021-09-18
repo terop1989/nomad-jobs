@@ -22,7 +22,7 @@ RUN     pip3 install ansible==${VERSION} \
         atlassian-python-api \
         jinja2 \
         natsort \
-        python-jenkins \
+        python-jenkins
 
 RUN     pip3 install python-nomad
 

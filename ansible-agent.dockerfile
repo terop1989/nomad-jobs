@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:focal
 #
 ARG VERSION=2.9.13
 #

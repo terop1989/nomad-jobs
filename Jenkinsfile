@@ -1,30 +1,28 @@
-node('master') {
-
-	try {
-
-		stage('Checkout SCM') {
-			checkout scm
-		}
-
-		jenkinsAgentDockerfileName = 'ansible-agent.dockerfile'
-		jenkinsAgentBuildName = 'ansible-agent/ansible:latest'
-		jenkinsAgentBuildArgs = ''
-		jenkinsAgentRunArgs = " -u 0:0 "
-
-		def AnsibleAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
-		AnsibleAgent.inside("${jenkinsAgentRunArgs}") {
-
-			stage('Ansible') {
-				sshagent (credentials: ['nomad-ssh-agent']) {
-					sh "/usr/local/bin/ansible-playbook -i ./hosts.txt nomad-job.yml -v"
-				}
-			}
-		}
-	}
-
-	finally {
-		stage('Cleanup') {
-			deleteDir()
-		}	
-	}
-}
+FROM ubuntu:focal
+#
+ARG VERSION=2.9.13
+#
+RUN apt-get update \
+        && apt-get install -y --no-install-recommends \
+        python3-pip \
+        openssh-client \
+        sshpass \
+        git \
+        && rm -rf /var/lib/apt/lists/*
+# For Ansible
+RUN pip3 install \
+        setuptools \
+        wheel \
+        lxml
+RUN pip3 install ansible==${VERSION}
+# For Changelog
+RUN pip3 install \
+        GitPython \
+        atlassian-python-api \
+        jinja2 \
+        natsort \
+        python-jenkins
+#
+##
+ENTRYPOINT []
+CMD tail -f /dev/null

@@ -8,14 +8,14 @@ node('master'){
         NomadHostIP = '192.168.0.112'
         NomadJobFile = 'nginx-alpine.hcl'
 
-	jenkinsAgentDockerfileName = 'ansible-agent.dockerfile'
-	jenkinsAgentBuildName = 'ansible-agent:latest'
+	jenkinsAgentDockerfileName = 'run-agent.dockerfile'
+	jenkinsAgentBuildName = 'run-agent:latest'
 	jenkinsAgentBuildArgs = ''
 	jenkinsAgentRunArgs = " -u 0:0 --add-host=\"${NomadHostName}:${NomadHostIP}\""
-	def AnsibleAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
+	def RunAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
         
 	stage('Docker Agent'){
-		AnsibleAgent.inside("${jenkinsAgentRunArgs}") {
+		RunAgent.inside("${jenkinsAgentRunArgs}") {
 			sshagent (credentials: ['nomad-ssh-agent']) {
 					    sh """
 					        mkdir /root/.ssh

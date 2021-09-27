@@ -20,6 +20,7 @@ node('master'){
 					    sh """
 					        mkdir /root/.ssh
 					        ssh-keyscan -t rsa "${NomadHostName}" >> ~/.ssh/known_hosts
+						ls -la ~/.ssh
 					        scp ./"${NomadJobFile}" ansible@"${NomadHostName}":/home/ansible
 					        ssh ansible@"${NomadHostName}" 'nomad job run ./"${NomadJobFile}"'
 					        ssh ansible@"${NomadHostName}" 'rm -f ./"${NomadJobFile}"'

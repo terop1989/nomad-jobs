@@ -5,28 +5,15 @@ node('master'){
         }
 
         NomadHostName = 'nomad01.local.com'
-        NomadHostIP = '192.168.0.112'
-        NomadJobFile = 'nginx-alpine.hcl'
-
-	jenkinsAgentDockerfileName = 'run-agent.dockerfile'
-	jenkinsAgentBuildName = 'run-agent:latest'
-	jenkinsAgentBuildArgs = ''
-	jenkinsAgentRunArgs = " -u 0:0 --add-host=\"${NomadHostName}:${NomadHostIP}\""
-	def RunAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
+        NomadJobFile  = 'nginx-alpine.json'
         
-	stage('Docker Agent'){
-		RunAgent.inside("${jenkinsAgentRunArgs}") {
-			sshagent (credentials: ['nomad-ssh-agent']) {
-					    sh """
-					        mkdir /root/.ssh
-					        ssh-keyscan -t rsa "${NomadHostName}" >> ~/.ssh/known_hosts
-						ls -la ~/.ssh
-					        scp ./"${NomadJobFile}" ansible@"${NomadHostName}":/home/ansible
-					        ssh ansible@"${NomadHostName}" 'nomad job run ./"${NomadJobFile}"'
-					        ssh ansible@"${NomadHostName}" 'rm -f ./"${NomadJobFile}"'
-					        """
-			}
-                }
+	stage('Deploy Job to Nomad'){
+                sh """
+                   curl \
+                   --request POST \
+                   --data @${NomadJobFile} \
+                   http://${NomadHostName}:4646/v1/jobs
+                   """
         }
     
 	stage('Clear'){

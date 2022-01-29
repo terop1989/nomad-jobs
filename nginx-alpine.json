@@ -1,0 +1,20 @@
+{
+"Job":
+     {
+     "Datacenters": ["dc1"],
+     "Type": "service",
+
+     "Tasks":
+            [
+                {
+                "Name": "nginx-task",
+                "Driver": "docker",
+                "Config":
+                        {
+                        "image": "terop1989/nginx-alpine:v1"
+                        }
+                }
+            ]
+
+     }
+}

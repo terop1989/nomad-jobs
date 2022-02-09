@@ -1,0 +1,13 @@
+---
+- name: Playbook start job in Nomad
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+
+  - name: Start Job
+    community.general.nomad_job:
+      host: ${NomadHostIP}
+      state: present
+      content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
+      timeout: 120

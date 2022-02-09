@@ -11,3 +11,4 @@
       state: present
       content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
       timeout: 120
+      use_ssl: no

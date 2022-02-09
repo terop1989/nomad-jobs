@@ -18,7 +18,7 @@ node('master'){
 
 		RunAgent.inside("${jenkinsAgentRunArgs}") {
 			sshagent (credentials: ['nomad-ssh-agent']) {
-					    sh "ansible-playbook nomad-job.yml -e hostname=${NomadHostIP}"
+					    sh "ansible-playbook nomad-job.yml -e host=${NomadHostIP}"
 						}
 				}
 		}

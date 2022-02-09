@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:focal
 #
-ARG VERSION=2.9.13
+ARG VERSION=2.9.24
 #
 RUN apt-get update \
         && apt-get install -y --no-install-recommends \

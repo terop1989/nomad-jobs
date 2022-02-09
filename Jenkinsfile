@@ -9,16 +9,13 @@ node('master'){
 	jenkinsAgentBuildArgs = ''
 	jenkinsAgentRunArgs = " -u 0:0"
 	def RunAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
-        
-	stage('Docker Agent'){
+	NomadHostIP = '192.168.0.112'
 
-		environment {
-			NomadHostIP = '192.168.0.112'
-		}
+	stage('Docker Agent'){
 
 		RunAgent.inside("${jenkinsAgentRunArgs}") {
 
-						sh "ansible-playbook nomad-job.yml -e 'nomad_address=${env.NomadHostIP}'"
+						sh "ansible-playbook nomad-job.yml -e 'nomad_address=${NomadHostIP}'"
 						}
 
 		}

@@ -1,11 +1,8 @@
 node('master'){
 
-		stage('Checkout SCM'){
-			checkout scm
-		}
-
-		NomadHostName = 'nomad01.local.com'
-		
+	stage('Checkout SCM'){
+		checkout scm
+	}
 
 	jenkinsAgentDockerfileName = 'run-agent.dockerfile'
 	jenkinsAgentBuildName = 'run-agent:latest'
@@ -21,7 +18,7 @@ node('master'){
 
 		RunAgent.inside("${jenkinsAgentRunArgs}") {
 			sshagent (credentials: ['nomad-ssh-agent']) {
-					    sh "ansible-playbook nomad-job.yml"
+					    sh "ansible-playbook nomad-job.yml -e hostname=${NomadHostIP}"
 						}
 				}
 		}

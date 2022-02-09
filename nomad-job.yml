@@ -7,7 +7,7 @@
 
   - name: Start Job
     community.general.nomad_job:
-      host: {{ nomad_address }}
+      host: "{{ nomad_address }}"
       state: present
       content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
       timeout: 120

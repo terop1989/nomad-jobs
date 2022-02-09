@@ -18,7 +18,7 @@ node('master'){
 
 		RunAgent.inside("${jenkinsAgentRunArgs}") {
 
-						sh "ansible-playbook nomad-job.yml -e host=${env.NomadHostIP}"
+						sh "ansible-playbook nomad-job.yml -e nomad_address=${env.NomadHostIP}"
 						}
 
 		}

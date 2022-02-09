@@ -21,7 +21,7 @@ RUN pip3 install \
         atlassian-python-api \
         jinja2 \
         natsort \
-        python-jenkins
+        python-jenkins \
         python-nomad
 
 RUN ansible-galaxy collection install community.general

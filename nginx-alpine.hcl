@@ -27,8 +27,15 @@ job "nginx-job" {
         tags = [
           "frontend"
         ]
-      }
 
+        check {
+          type = "http"
+          path = "/"
+          interval = "5s"
+          timeout = "2s"
+        }
+
+      }
     }
   }
 }

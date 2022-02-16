@@ -21,7 +21,7 @@ job "nginx-job" {
       }
 
       service {
-        name = "frontend"
+        name = "nginx-frontend"
         port = "http-nginx"
 
         tags = [

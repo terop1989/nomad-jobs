@@ -11,6 +11,14 @@ job "nginx-job" {
       config {
         image = "terop1989/nginx-alpine:v1"
       }
+
+      resources {
+        network {
+          port "http-nginx' {
+            static = 8888
+          }
+        }
+      }
     }
   }
 }

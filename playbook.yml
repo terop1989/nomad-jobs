@@ -1,7 +1,0 @@
----
-- name: Some Playbook
-  hosts: all
-  tasks:
-
-  - name: Ping Servers
-    ping:

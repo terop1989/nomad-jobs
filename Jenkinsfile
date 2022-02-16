@@ -1,30 +1,26 @@
-node('master') {
+node('master'){
 
-	try {
-
-		stage('Checkout SCM') {
-			checkout scm
-		}
-
-		jenkinsAgentDockerfileName = 'ansible-agent.dockerfile'
-		jenkinsAgentBuildName = 'ansible-agent/ansible:latest'
-		jenkinsAgentBuildArgs = ''
-		jenkinsAgentRunArgs = " -u 0:0 "
-
-		def AnsibleAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
-		AnsibleAgent.inside("${jenkinsAgentRunArgs}") {
-
-			stage('Ansible') {
-				sshagent (credentials: ['nomad-ssh-agent']) {
-					sh "/usr/local/bin/ansible-playbook -i ./hosts.txt playbook.yml -v"
-				}
-			}
-		}
+	stage('Checkout SCM'){
+		checkout scm
 	}
 
-	finally {
-		stage('Cleanup') {
-			deleteDir()
-		}	
-	}
+	jenkinsAgentDockerfileName = 'run-agent.dockerfile'
+	jenkinsAgentBuildName = 'run-agent:latest'
+	jenkinsAgentBuildArgs = ''
+	jenkinsAgentRunArgs = " -u 0:0"
+	def RunAgent = docker.build("${jenkinsAgentBuildName}", "${jenkinsAgentBuildArgs} -f ${jenkinsAgentDockerfileName} .")
+	NomadHostIP = '192.168.0.112'
+
+	stage('Docker Agent'){
+
+		RunAgent.inside("${jenkinsAgentRunArgs}") {
+
+						sh "ansible-playbook nomad-job.yml -e 'nomad_address=${NomadHostIP}'"
+						}
+
+		}
+
+	stage('Clear'){
+		deleteDir()
+		}
 }

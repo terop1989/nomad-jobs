@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 #
-ARG VERSION=2.9.13
+ARG VERSION=2.9.24
 #
 RUN apt-get update \
         && apt-get install -y --no-install-recommends \
@@ -21,8 +21,10 @@ RUN pip3 install \
         atlassian-python-api \
         jinja2 \
         natsort \
-        python-jenkins
-#
-##
+        python-jenkins \
+        python-nomad
+
+RUN ansible-galaxy collection install community.general
+
 ENTRYPOINT []
 CMD tail -f /dev/null

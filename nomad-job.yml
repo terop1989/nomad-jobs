@@ -1,13 +1,14 @@
 ---
-- name: Starting Nomad Job by Ansible
-  hosts: nomad_server
+- name: Playbook start job in Nomad
+  hosts: localhost
   gather_facts: false
 
   tasks:
 
-  - name: Ping
+  - name: Start Job
     community.general.nomad_job:
-      host: localhost
+      host: "{{ nomad_address }}"
       state: present
       content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
-    
+      timeout: 120
+      use_ssl: no

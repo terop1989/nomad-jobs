@@ -19,6 +19,16 @@ job "nginx-job" {
           }
         }
       }
+
+      service {
+        name = "frontend"
+        port = "http-nginx"
+
+        tags = [
+          "frontend"
+        ]
+      }
+
     }
   }
 }

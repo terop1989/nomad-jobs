@@ -14,7 +14,7 @@ job "nginx-job" {
 
       resources {
         network {
-          port "http-nginx' {
+          port "http-nginx" {
             static = 8888
           }
         }

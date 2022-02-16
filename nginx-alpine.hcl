@@ -9,7 +9,7 @@ job "nginx-job" {
     task "nginx-task" {
       driver = "docker"
       config {
-        image = "terop1989/nginx-alpine:v1"
+        image = "nginx:latest"
       }
 
       resources {

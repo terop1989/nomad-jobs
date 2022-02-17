@@ -5,12 +5,7 @@ job "nginx-job" {
 
   group "frontend" {
 
-    scaling {
-      enabled = true
-      min = 1
-      max = 3
-      policy = {}
-    }
+    count = 1
 
     task "nginx-task" {
       driver = "docker"

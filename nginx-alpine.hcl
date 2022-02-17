@@ -18,7 +18,7 @@ job "nginx-job" {
 
         network {
           port "http-nginx" {
-            static = 8888
+            static = 80
           }
         }
       }

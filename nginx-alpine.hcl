@@ -4,7 +4,13 @@ job "nginx-job" {
   type = "service"
 
   group "frontend" {
-    count = 1
+
+    scaling {
+      enabled = true
+      min = 1
+      max = 3
+      policy = {}
+    }
 
     task "nginx-task" {
       driver = "docker"

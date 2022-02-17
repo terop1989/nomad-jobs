@@ -13,6 +13,9 @@ job "nginx-job" {
       }
 
       resources {
+        cpu = 100
+        memory = 256
+
         network {
           port "http-nginx" {
             static = 8888

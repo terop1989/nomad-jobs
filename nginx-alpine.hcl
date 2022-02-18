@@ -13,6 +13,23 @@ job "nginx-job" {
         image = "nginx:latest"
       }
 
+      template {
+        data = <<EOH
+<html>
+<head>
+<title>Nomad Task</title>
+</head>
+<body>
+<h1>Welcome to Nomad!</h1>
+<p>If you see this page, the task is successfully deployed and
+working. </p>
+</body>
+</html>
+        EOH
+        destination = /usr/share/nginx/html/index.html
+        
+      }
+
       resources {
         cpu = 100
         memory = 256

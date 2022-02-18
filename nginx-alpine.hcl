@@ -26,7 +26,7 @@ job "nginx-job" {
 </head>
 <body>
 <h1>Welcome to Nomad!</h1>
-<p>If you see this page, the task is successfully deployed and
+<p>If you see this page, the task is successfully deployed on host {{ env "attr.unique.hostname" }} and
 working. </p>
 </body>
 </html>

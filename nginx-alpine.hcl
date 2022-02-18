@@ -26,7 +26,7 @@ working. </p>
 </body>
 </html>
         EOH
-        destination = /usr/share/nginx/html/index.html
+        destination = "/usr/share/nginx/html/index.html"
         
       }
 

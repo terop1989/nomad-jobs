@@ -20,16 +20,7 @@ job "nginx-job" {
 
       template {
         data = <<EOH
-<html>
-<head>
-<title>Nomad Task</title>
-</head>
-<body>
-<h1>Welcome to Nomad!</h1>
-<p>If you see this page, the task is successfully deployed on host {{ env "attr.unique.hostname" }} and
-working. </p>
-</body>
-</html>
+        "{{ key "front_page_template" }}"
         EOH
         destination = "/local/index.html"
       }

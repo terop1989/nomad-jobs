@@ -20,7 +20,7 @@ job "nginx-job" {
 
       template {
         data = <<EOH
-        "{{ key "front_page_template" }}"
+        {{ key "front_page_template" }}
         EOH
         destination = "/local/index.html"
       }

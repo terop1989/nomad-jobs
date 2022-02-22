@@ -30,11 +30,7 @@ job "nginx-job" {
 working. </p>
 <p>Service List registered in Nomad Cluster:</p>
 {{ range services -}}
-# {{ .Name }}
-{{- range service .Name }}
-{{ .Address }}
-{{- end }}
-
+<p># {{ .Name }}</p>
 {{ end -}}
 </body>
 </html>

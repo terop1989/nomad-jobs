@@ -23,6 +23,8 @@ job "nginx-job" {
         "{{ key "front_page_template" }}"
         EOH
         destination = "/local/index.html"
+        change_mode = "restart"
+        env = true
       }
 
       resources {

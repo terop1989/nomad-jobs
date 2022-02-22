@@ -23,7 +23,7 @@ job "nginx-job" {
         "{{ key "front_page_template" }}"
         EOH
         destination = "/local/index.html"
-        change_mode = "restart"
+        change_mode = "noop"
         env = true
       }
 

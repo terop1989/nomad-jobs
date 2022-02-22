@@ -28,10 +28,6 @@ job "nginx-job" {
 <h1>Welcome to Nomad!</h1>
 <p>If you see this page, the task is successfully deployed on host {{ env "attr.unique.hostname" }} and
 working. </p>
-<p>Service List registered in Nomad Cluster:</p>
-{{ range services -}}
-<p># {{ .Name }}</p>
-{{ end -}}
 </body>
 </html>
         EOH

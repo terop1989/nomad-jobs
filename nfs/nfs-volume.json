@@ -1,0 +1,22 @@
+{
+    "Volumes": [
+      {
+        "ExternalID": "csi-test",
+        "ID": "test",
+        "Name": "test",
+        "PluginID": "nfs",
+        "Type": "csi",
+        "RequestedCapabilities": [
+          {
+            "AccessMode": "single-node-writer",
+            "AttachmentMode": "file-system"
+          }
+        ],
+        "Context": {
+           "Server": "docker1.local.com",
+           "Share": "/"
+        }
+      }
+    ]
+  }
+  

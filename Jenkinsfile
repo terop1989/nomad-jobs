@@ -13,7 +13,7 @@ node('master'){
 
     stage('Docker Agent'){
         RunAgent.inside("${jenkinsAgentRunArgs}") {
-            sh "ansible-playbook nomad-job.yml -e 'nomad_address=${NomadHostIP}'"
+            sh "ansible-playbook deploy.yml -e 'nomad_address=${NomadHostIP}'"
         }
     }
 

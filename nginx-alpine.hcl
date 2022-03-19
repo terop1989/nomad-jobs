@@ -11,6 +11,18 @@ job "nginx-job" {
       driver = "docker"
       config {
         image = "nginx:latest"
+        mount {
+          type = "bind"
+          source = "local"
+          target = "/usr/share/nginx/html"
+        }
+      }
+
+      template {
+        data = <<EOH
+        {{ key "front_page_template" }}
+        EOH
+        destination = "/local/index.html"
       }
 
       resources {

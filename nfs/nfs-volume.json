@@ -1,0 +1,22 @@
+{
+    "Volumes": [
+      {
+        "ExternalID": "vol-abcdef",
+        "ID": "volume-id1",
+        "Name": "volume one",
+        "PluginID": "nfs",
+        "Type": "csi",
+        "RequestedCapabilities": [
+          {
+            "AccessMode": "single-node-writer",
+            "AttachmentMode": "file-system"
+          }
+        ],
+        "Context": {
+           "Server": "192.168.0.112",
+           "Share": "data"
+        }
+      }
+    ]
+  }
+  

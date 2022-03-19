@@ -1,0 +1,36 @@
+---
+- name: Playbook start job in Nomad
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+
+  - name: Start NFS-Controller
+    community.general.nomad_job:
+      host: "{{ nomad_address }}"
+      state: present
+      content: "{{ lookup('ansible.builtin.file', 'nfs/plugin-nfs-controller.hcl') }}"
+      timeout: 120
+      use_ssl: no
+
+  - name: Start NFS-Node
+    community.general.nomad_job:
+      host: "{{ nomad_address }}"
+      state: present
+      content: "{{ lookup('ansible.builtin.file', 'nfs/plugin-nfs-node.hcl') }}"
+      timeout: 120
+      use_ssl: no
+
+  - name: Register NFS-Volume
+    uri:
+      url: "http://{{ nomad_address }}:4646/v1/volume/csi/test"
+      src: "nfs/nfs-volume.json"
+      method: PUT
+
+  - name: Start Nginx Job
+    community.general.nomad_job:
+      host: "{{ nomad_address }}"
+      state: present
+      content: "{{ lookup('ansible.builtin.file', 'nginx-alpine.hcl') }}"
+      timeout: 120
+      use_ssl: no

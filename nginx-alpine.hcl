@@ -7,6 +7,13 @@ job "nginx-job" {
 
     count = 1
 
+    volume "test" {
+      type = "csi"
+      source = "test"
+      access_mode = "single-node-writer"
+      attachment_mode = "file-system"
+    }
+
     task "nginx-task" {
       driver = "docker"
       config {
@@ -16,6 +23,11 @@ job "nginx-job" {
           source = "local"
           target = "/usr/share/nginx/html"
         }
+      }
+
+      volume_mount {
+        volume = "test"
+        destination = "/mnt/test"
       }
 
       template {

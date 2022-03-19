@@ -14,7 +14,7 @@
         ],
         "Context": {
            "Server": "docker1.local.com",
-           "Share": "/data/docker-volumes"
+           "Share": "/"
         }
       }
     ]

@@ -3,7 +3,7 @@
       {
         "ExternalID": "vol-abcdef",
         "ID": "volume-id1",
-        "Name": "volume one",
+        "Name": "test",
         "PluginID": "nfs",
         "Type": "csi",
         "RequestedCapabilities": [

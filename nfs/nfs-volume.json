@@ -1,8 +1,8 @@
 {
     "Volumes": [
       {
-        "ExternalID": "vol-abcdef",
-        "ID": "volume-id1",
+        "ExternalID": "csi-test",
+        "ID": "test",
         "Name": "test",
         "PluginID": "nfs",
         "Type": "csi",
@@ -13,7 +13,7 @@
           }
         ],
         "Context": {
-           "Server": "192.168.0.112",
+           "Server": "docker1.local.com",
            "Share": "data"
         }
       }
